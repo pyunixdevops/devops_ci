@@ -1,0 +1,8 @@
+---
+
+- name: Apache install & configure
+  hosts: apache2
+  remote_user: ec2-user
+  sudo: yes
+  roles:
+    - apache2

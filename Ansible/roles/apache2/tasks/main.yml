@@ -1,0 +1,22 @@
+- name: ensure apache is installed
+  yum: 
+    name: httpd
+    state: latest
+
+- name: ensure apache is running
+  service:
+    name: httpd
+    state: running
+    enabled: yes
+
+- name: copy files to document root
+  copy:
+    src: DevOps-Tools.jpg
+    dest: /var/www/html/DevOps.jpg
+
+- name: copy application code to document root
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+  notify: restart apache
